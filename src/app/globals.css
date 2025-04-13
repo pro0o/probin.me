@@ -1,0 +1,203 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #111;
+  --foreground: #d1d5db;
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  cursor: url("../app/assets/cursor.svg"), auto;
+  color: var(--foreground);
+  background: var(--background);
+}
+
+/* Hide scrollbar for most elements */
+::-webkit-scrollbar {
+  display: none;
+}
+
+html {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Noise effect */
+body::after {
+  content: "";
+  background-image: url("https://bedes.qui.gg/images/framernoise.png");
+  height: 300%;
+  width: 300%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 100;
+  animation: fadeInGrain 1s ease forwards, animateGrain 12s steps(10) infinite;
+}
+
+@keyframes fadeInGrain {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0.04;
+  }
+}
+
+@keyframes animateGrain {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  10% {
+    transform: translate(-5%, -10%);
+  }
+  20% {
+    transform: translate(-15%, -20%);
+  }
+  30% {
+    transform: translate(-5%, -10%);
+  }
+  40% {
+    transform: translate(-15%, -20%);
+  }
+  50% {
+    transform: translate(-5%, -10%);
+  }
+  60% {
+    transform: translate(-15%, -20%);
+  }
+  70% {
+    transform: translate(-5%, -10%);
+  }
+  80% {
+    transform: translate(-15%, -20%);
+  }
+  90% {
+    transform: translate(-5%, -10%);
+  }
+  100% {
+    transform: translate(-15%, -20%);
+  }
+}
+
+/* Transition effects */
+.transition-wrapper {
+  transition-property: opacity, transform, filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+  will-change: opacity, filter;
+}
+
+.page-transtion {
+  opacity: 0;
+  filter: blur(12px);
+  transform: translateY(10px);
+  pointer-events: none;
+}
+
+.content-fade-mask {
+  padding-bottom: 90px;
+}
+
+.initial-load {
+  opacity: 0;
+  animation: fadeInPage 10s ease-out forwards 3s;
+}
+
+@keyframes fadeInPage {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+a,
+button,
+input[type="submit"],
+input[type="button"],
+.clickable {
+  cursor: url("../app/assets/cursor.svg"), pointer;
+}
+
+.shiki,
+.shiki span {
+  color: var(--shiki-dark) !important;
+  background-color: var(--shiki-dark-bg) !important;
+  font-style: var(--shiki-dark-font-style) !important;
+  font-weight: var(--shiki-dark-font-weight) !important;
+  text-decoration: var(--shiki-dark-text-decoration) !important;
+}
+
+/* Show scrollbar only for code blocks */
+.code-block-container::-webkit-scrollbar {
+  display: block;
+  height: 6px;
+}
+
+.code-block-container::-webkit-scrollbar-track {
+  border-radius: 3px;
+}
+
+.code-block-container::-webkit-scrollbar-thumb {
+  border-radius: 3px;
+}
+
+.code-block-container::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.code-block-container {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.3) rgba(255, 255, 255, 0.1);
+}
+
+.code-block-container pre {
+  background-color: black !important;
+}
+
+.prose a:not(.anchor) {
+  @apply text-accent no-underline hover:underline;
+}
+
+.prose a.anchor {
+  @apply relative no-underline;
+}
+
+.prose a.anchor::before {
+  @apply absolute -left-4 opacity-0 transition-opacity duration-200 content-['#'];
+}
+
+.prose a.anchor:hover::before {
+  @apply opacity-100;
+}
+
+.prose pre {
+  @apply overflow-x-auto border border-neutral-800 bg-[#111] my-4 rounded-none;
+}
+
+.prose code:not(pre code) {
+  @apply px-1 py-0.5 text-sm border border-gray-700 rounded text-gray-200;
+}
+
+.prose code:not(pre code)::before,
+.prose code:not(pre code)::after {
+  content: none;
+}
+
+.prose pre code {
+  @apply p-4 block bg-transparent;
+  border: initial;
+  line-height: 1.6;
+}
+
+.prose code span {
+  @apply font-medium text-gray-200;
+}
