@@ -31,7 +31,7 @@ export function Navbar() {
   }, [router])
 
   return (
-    <nav className="flex items-center justify-between mb-12 text-md text-gray-400">
+    <nav className="max-w-2xl mx-auto items-center px-4 justify-between text-sm text-gray-400">
       <div className="flex space-x-6">
         <Link
           href="/"

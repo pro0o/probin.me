@@ -28,7 +28,7 @@ export function SectionList({
         <span className="text-accent mr-2">*</span> {title}
       </h2>
       <div className="space-y-8">
-        {items.map((item, index) => (
+        {items.map((item) => (
           <div key={item.title} className="group">
             <Link href={item.href} target="_blank">
               <h3 className="text-xl font-semibold mb-1 text-white group-hover:text-accent transition-colors duration-200">
@@ -45,10 +45,9 @@ export function SectionList({
       {viewAllHref && (
         <Link
           href={viewAllHref}
-          className="inline-flex items-center gap-1 mt-6 text-accent hover:underline group"
+          className="inline-flex items-center font-medium gap-1 mt-6 text-accent md:hover:bg-accent md:hover:text-gray-900"
         >
-          {viewAllText}{" "}
-          <ArrowUpRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1 group-hover:-translate-y-1" />
+          [ {viewAllText} ]
         </Link>
       )}
     </section>

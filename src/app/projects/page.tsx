@@ -8,10 +8,10 @@ const projects = [
     description:
       "simulate the core features of raft consensus algorithm.",
     achievements: [
-      "simulate general election, kill & respawn nodes, constant heartbeat from leader all through RPC.",
-      "kv application layer with simple get/put req.",
-      "visualization of overall consensus logs using ws.",
-      "ci/cd pipeline through github actions.",
+      "general election, kill & respawn nodes, heartbeats.",
+      "kv store with simple get/put req.",
+      "realtime visualization over ws.",
+      "ci/cd pipeline via github actions [aws ec2 + docker].",
     ],
     technologies: [
       "go",
@@ -27,12 +27,12 @@ const projects = [
   },
   {
     title: "sup-bud",
-    description: "a tiny, intentionally simple programming language written in go.",
+    description: "a tiny, intentionally simple programming language.",
     achievements: [
-      "recursive descent parser w/ ast-based tree walking interpreter.",
-      "var declarations, arithmetic & boolean logic, if/else exp with return stmt.",
-      "funcs & closures with scoping & environments.",
-      "minimal web UI w/ syntax highlighting.",
+      "recursive descent parser with AST interpreter.",
+      "variables, logic ops, conditionals & returns.",
+      "funcs, closures, scoping & environments.",
+      "minimal web UI with syntax highlighting.",
     ],
     technologies: ["go",
        "js",
@@ -44,12 +44,13 @@ const projects = [
   },
   {
     title: "second-life",
-    description: "an approach to give waste—from clothes to plastics to food—a new life.",
+    description: "an initiative to give waste a new life.",
     achievements: [
-      "bridge between recyling industry and general users.",
-      "object detection, recycling suggestion  & video recommendation.",
-      "type-safe APIs using protos. & bruno for testing.",
-      "runtime layer to serve & consume APIs using connectRPC w/ jwt-authentication.",
+      "bridge between recyling industry & general users.",
+      "object detection, recycle tips, & video recommend.",
+      "type-safe APIs via protos, tested with Bruno.",
+      "jwt-auth + runtime layer for APIs using connectRPC.",
+      "store user datas via pgsql.",
       "mobile app w/ flutter.",
     ],
     technologies: [
@@ -61,33 +62,33 @@ const projects = [
       "python",
       "llama 3.1 [8b]",
       "YOLOv8n",
+      "docker",
      ],
     href: "https://github.com/pro0o/second-life",
   },
   {
     title: "hmmm",
     description:
-      "cli tool to keep track of cmds used within a project locally or w/ git.",
+      "keep track of cmds used within a project w/ git.",
     achievements: [
-      "easy-to-use cli to add, edit & delete cmds used within a project.",
-      "utilized levensthein distance or Largest Common Distance(LCS) between strings.",
-      "hmmm...now no need to remember cmds time and again. hmmm...",
+      "easy-to-use cli to save, edit, search & delete cmds.",
+      "uses levensthein distance for fuzzy matching.",
+      "hmmm...now no need to remember cmds time and again.",
     ],
     technologies: [
       "go",
       "cobra",
-      "LCS"],
+      "Largest Common Sequence"],
     href: "https://github.com/pro0o/hmmm",
   },
   {
     title: "नानी",
-    description: "an initiative to make cataract checkup more feasible in rural areas of Nepal.",
+    description: "an initiative to make cataract checkup in rural Nepal.",
     achievements: [
-      "dataset retrievation from kaggle & physical eye images captured by us.",
-      "trained CNN model w/ dataset of total ~8000(~4000 each of normal & cataract eye images).",
-      "achieved an accuracy of ~(90-94%).",
-      "easier eye-checkup for cataract through an eye image w/ flutter mobile app.",
-      "eye-care recommendation & suggestions w/ chatbot.",
+      "gathered ~8k eye images via kaggle + locally.",
+      "trained CNN model with ~(90–94%) accuracy.",
+      "flutter-mobile-app enables easy cataract checkup via image.",
+      "chatbot for eye-care suggestions."
     ],
     technologies: [
       "jupyter notebook",
@@ -96,12 +97,29 @@ const projects = [
       "llama 3.1 [8b]"
     ],
     href: "https://github.com/pro0o/naani/",
+  },
+  {
+    title: "music-match",
+    description: "basically tinder but matching solely based on music taste.",
+    achievements: [
+      "parsed key audio features such as genres, tempo, acousticness, liveness, danceability, energy.",
+      "store users data on sqlite; highly maintainable.",
+      "used NDS + token matching + weighted scoring.",
+      "achieved nicee interactions among our friends; the main goal.",
+    ],
+    technologies: [
+      "c++",
+      "cpr",
+      "spotify api",
+      "sqlite"
+    ],
+    href: "https://github.com/pro0o/music-match/",
   }
 ]
 
 export default function ProjectsPage() {
   return (
-    <main className="animate-fade-in-up">
+    <main className="animate-fade-in-up max-w-2xl mx-auto px-4 py-8 min-h-screen">
       <h1 className="text-4xl font-bold mb-8 text-white">
         <span className="text-accent mr-2">*</span>
         <ScrambleText text="projects" />
@@ -117,7 +135,7 @@ export default function ProjectsPage() {
 }
 
 export const metadata: Metadata = {
-  title: "Projects",
+  title: "projects",
   description: "Some of the projects I've worked on.",
   openGraph: {
     images: [

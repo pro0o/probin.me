@@ -119,14 +119,6 @@ body::after {
   }
 }
 
-a,
-button,
-input[type="submit"],
-input[type="button"],
-.clickable {
-  cursor: url("../app/assets/cursor.svg"), pointer;
-}
-
 .shiki,
 .shiki span {
   color: var(--shiki-dark) !important;

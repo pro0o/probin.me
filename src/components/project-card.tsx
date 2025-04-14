@@ -23,7 +23,7 @@ export function ProjectCard({
           <h2 className="text-2xl font-bold text-white group-hover:text-accent transition-colors">
             {title}
           </h2>
-          <ArrowUpRight className="w-5 h-5 text-gray-400 group-hover:text-accent transition-colors" />
+          <ArrowUpRight className="w-7 h-7 text-gray-400 group-hover:text-accent transition-colors" />
         </div>
       </Link>
 
@@ -32,7 +32,7 @@ export function ProjectCard({
       <div className="space-y-6">
         <div>
           <h3 className="text-white font-semibold mb-2">key features</h3>
-          <ul className="list-disc list-inside space-y-1 text-gray-400">
+          <ul className="list-disc text-md list-inside space-y-1 text-gray-400">
             {achievements.map((achievement, index) => (
               <li key={index}>{achievement}</li>
             ))}
