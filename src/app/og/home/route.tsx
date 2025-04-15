@@ -19,7 +19,6 @@ async function loadGoogleFont(font: string, text: string) {
   return await fontRes.arrayBuffer()
 }
 
-
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url)
   const title = searchParams.get("title")

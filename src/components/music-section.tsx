@@ -24,8 +24,7 @@ export function MusicSection() {
       description: "experimental, hyperpop",
       url: "https://open.spotify.com/album/121Hqnfr9tMBdL0LJuIstL",
     },
-  ];
-  
+  ]
 
   return (
     <section className="mb-12 animate-fade-in-up">
@@ -41,22 +40,20 @@ export function MusicSection() {
       <ul className="pl-4 space-y-2 animate-fade-in-up">
         {albums.map((album, index) => (
           <li key={index} className="flex items-start gap-2 relative">
-            <div className="absolute left-[-1rem] pl-6 top-[0.5rem] w-2 h-2  bg-gray-400"></div>
+            <div className="absolute left-[-1rem] pl-6 top-[0.5rem] w-2 h-2 bg-gray-400"></div>
             <a
               href={album.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-300 pl-8 hover:text-accent transition-colors duration-200"
+              className="text-gray-300 pl-8 font-medium text-sm transition-colors duration-200 ease-in-out hover:text-accent"
             >
-              <span className="font-medium text-sm hover:bg-accent hover:text-gray-900 transition">{album.title} by {album.artist} [{album.description}]
+              <span>
+                {album.title} by {album.artist} [{album.description}]
               </span>
-              
             </a>
           </li>
         ))}
       </ul>
-      
     </section>
   )
 }
-

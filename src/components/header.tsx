@@ -15,7 +15,7 @@ export function Header() {
       <div className="flex flex-col gap-2 text-gray-400">
         <div className="flex items-center gap-2">
           <a
-          href="/patlu?ext=vid"
+          href="/media?ext=mp4"
           target="_blank"
           rel="noopener noreferrer"
           className="hover:bg-accent hover:text-gray-900 transition mb-2"

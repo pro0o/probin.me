@@ -21,7 +21,7 @@ export default function NotFound() {
           `}
         </pre>
         <p className="text-gray-400">
-          looks like you've wandered into uncharted territory
+        It seems you've ventured beyond the familiar path.
         </p>
         <Link
           href="/"
