@@ -14,7 +14,7 @@ export function ProjectCard({ title, description, achievements, technologies, hr
     <Link
       href={href}
       target="_blank"
-      className="block group border-4 border-gray-800 p-6 transition-colors duration-200 hover:border-accent/60"
+      className="block group border-2 border-gray-800 p-6 transition-colors duration-200 hover:border-accent/60"
     >
       <div className="flex justify-between items-start mb-4">
         <h2 className="text-2xl font-bold text-white group-hover:text-accent transition-colors duration-0">{title}</h2>

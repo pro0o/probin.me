@@ -39,39 +39,38 @@ export default function TransitionLink({
   const targetPath = href.split("?")[0] || "";
   const currentPath = pathname || "";
 
-  const handleTranstion = async (
-    e: React.MouseEvent<HTMLAnchorElement, MouseEvent>
-  ) => {
+  const handleTransition = async (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
     e.preventDefault();
-
+    
     if (currentPath === targetPath) {
       return;
     }
-
+    
     window.dispatchEvent(new CustomEvent("pageTransitionStart"));
-
+    
     const isFirstVisit = targetPath && !visitedRoutes.has(targetPath);
-
     if (targetPath) {
       visitedRoutes.add(targetPath);
     }
-
-    await sleep(isFirstVisit ? 500 : 150);
+    
+    // Faster transition times
+    await sleep(isFirstVisit ? 200 : 80);
     router.push(href);
-    await sleep(isFirstVisit ? 500 : 150);
-
+    await sleep(isFirstVisit ? 150 : 50);
+    
     window.dispatchEvent(new CustomEvent("pageTransitionComplete"));
   };
 
   return (
     <Link
-      onClick={isClient ? handleTranstion : undefined}
+      onClick={isClient ? handleTransition : undefined}
       href={href}
       className={className}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
       {...props}
-      prefetch={false}
+      // Enable prefetch for faster navigation
+      prefetch={true}
     >
       {children}
     </Link>

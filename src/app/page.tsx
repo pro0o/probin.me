@@ -27,26 +27,29 @@ const projectItems = [
   },
 ]
 
+function Divider() {
+  return <div className="text-left text-zinc-600 my-2">************************</div>
+}
+
 export default function HomePage() {
   return (
     <div className="max-w-2xl mx-auto px-4 pt-16 pb-6 min-h-screen flex flex-col text-zinc-800">
-  <Header />
-  <hr className="border-dashed border-zinc-600 border-t h-[1px] my-4" />
+      <Header />
+      <Divider />
 
-  <main className="flex-1">
-    <SectionList
-      title="projects"
-      items={projectItems}
-      viewAllHref="/projects"
-      viewAllText="all projects"
-    />
-    <hr className="border-dashed border-zinc-600 border-t h-[1px] my-4" />
-    <MusicSection />
-  </main>
+      <main className="flex-1">
+        <SectionList
+          title="projects"
+          items={projectItems}
+          viewAllHref="/projects"
+          viewAllText="all projects"
+        />
+        <Divider />
+        <MusicSection />
+      </main>
 
-  <hr className="border-dashed border-zinc-600 border-t h-[1px] my-4" />
-  <Footer />
-</div>
-
+      <Divider />
+      <Footer />
+    </div>
   )
 }

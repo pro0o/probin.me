@@ -23,7 +23,7 @@ const projects = [
       "aws ec2",
       "docker",
     ],
-    href: "/raft-home",
+    href: "https://raft-in-motion.vercel.app/",
   },
   {
     title: "sup-bud",
@@ -41,7 +41,7 @@ const projects = [
        "css",
        "docker",
       ],
-    href: "/ai",
+    href: "https://sup-bud.ddns.net/",
   },
   {
     title: "second-life",
