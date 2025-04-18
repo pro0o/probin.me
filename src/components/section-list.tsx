@@ -63,7 +63,7 @@ export function SectionList({
       <Link
         href={viewAllHref}
         className="inline-flex items-center font-medium gap-1 text-accent md:hover:bg-accent md:hover:text-gray-900"
-        
+        target="_blank"
         rel="noopener noreferrer"
       >
         [ {viewAllText ?? "View All"} ]

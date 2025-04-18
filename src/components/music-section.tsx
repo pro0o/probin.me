@@ -43,7 +43,7 @@ export function MusicSection() {
             <div className="absolute left-[-1rem] pl-2 top-[0.5rem] w-1 h-1 bg-white/90"></div>
             <a
               href={album.url}
-              
+              target="_blank"
               rel="noopener noreferrer"
               className="text-zinc-400 pl-6 font-medium lowercase text-sm transition-colors duration-0 ease-in-out hover:text-accent"
             >

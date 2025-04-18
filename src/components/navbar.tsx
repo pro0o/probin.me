@@ -7,8 +7,8 @@ import TransitionLink from "./utils/transition-link"
 const links = [
   { href: "/", label: "[h] home", key: "h", internal: true },
   { href: "/projects", label: "[p] projects", key: "p", internal: true },
-  { href: "/ai", label: "[AI mera bhai]", external: true },
-  { href: "/raft-home", label: "[raft~]", external: true },
+  { href: "https://www.sup-bud.ddns.net/", label: "[AI mera bhai]", external: true },
+  { href: "https://raft-in-motion.vercel.app/", label: "[raft~]", external: true },
 ]
 
 function sleep(ms: number): Promise<void> {
@@ -89,7 +89,7 @@ export function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                
+                target="_blank"
                 rel="noopener noreferrer"
                 className="hover:bg-accent hover:text-gray-900 duration-0 transition-colors"
               >

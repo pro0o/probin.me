@@ -8,7 +8,7 @@ const projectItems = [
     title: "raft-in-motion",
     imageSrc: "/11.png",
     description: "watch nodes elect leaders, sync logs, and recover from failures — all in real time.",
-    href: "/raft-home",
+    href: "https://raft-in-motion.vercel.app/",
     technology: [
       "go",
       "typescript",
@@ -19,7 +19,7 @@ const projectItems = [
     title: "sup-bud",
     imageSrc: "/22.png",
     description: "a tiny, intentionally simple programmming language from scratch.",
-    href: "/ai",
+    href: "https://www.sup-bud.ddns.net/",
     technology: [
       "go",
       "wasm",
