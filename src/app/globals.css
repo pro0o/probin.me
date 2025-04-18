@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  --background: #111;
+  --background: #0f0f0f;
   --foreground: #d1d5db;
   scroll-behavior: smooth;
 }
@@ -28,7 +28,7 @@ html {
 /* Noise effect */
 body::after {
   content: "";
-  background-image: url("https://bedes.qui.gg/images/framernoise.png");
+  background-image: url("/framernoise.png");
   height: 300%;
   width: 300%;
   position: fixed;

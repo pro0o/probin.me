@@ -23,7 +23,7 @@ const projects = [
       "aws ec2",
       "docker",
     ],
-    href: "https://raft-in-motion.vercel.app/",
+    href: "/raft-home",
   },
   {
     title: "sup-bud",
@@ -36,11 +36,12 @@ const projects = [
     ],
     technologies: ["go",
        "js",
+       "wasm",
        "html",
        "css",
        "docker",
       ],
-    href: "https://sup-bud.ddns.net/",
+    href: "/ai",
   },
   {
     title: "second-life",
@@ -83,11 +84,11 @@ const projects = [
   },
   {
     title: "नानी",
-    description: "an initiative to make cataract checkup in rural Nepal.",
+    description: "an initiative to make cataract checkup easy in rural Nepal.",
     achievements: [
       "gathered ~8k eye images via kaggle + locally.",
-      "trained CNN model with ~(90–94%) accuracy.",
-      "flutter-mobile-app enables easy cataract checkup via image.",
+      "trained CNN model with ~(90 - 94)% accuracy.",
+      "mobile app w/flutter; easy cataract checkup via image.",
       "chatbot for eye-care suggestions."
     ],
     technologies: [
@@ -119,7 +120,7 @@ const projects = [
 
 export default function ProjectsPage() {
   return (
-    <main className="animate-fade-in-up max-w-2xl mx-auto px-4 py-8 min-h-screen">
+    <main className="animate-fade-in-up max-w-2xl mx-auto px-4 pt-16 pb-6 min-h-screen">
       <h1 className="text-4xl font-bold mb-8 text-white">
         <span className="text-accent mr-2">*</span>
         <ScrambleText text="projects" />

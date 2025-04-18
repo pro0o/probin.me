@@ -21,6 +21,29 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  }
+  async rewrites() {
+    return [
+      {
+        source: '/ai',
+        destination: 'https://sup-bud.ddns.net',
+      },
+      {
+        source: '/ai/:path*',
+        destination: 'https://sup-bud.ddns.net/:path*',
+        basePath: false,
+      },
+      {
+        source: '/raft-home',
+        destination: 'https://raft-in-motion.vercel.app',
+        basePath: false,
+      },
+      {
+        source: '/raft-home/:path*',
+        destination: 'https://raft-in-motion.vercel.app/:path*',
+        basePath: false,
+      },
+    ];
+  },
+}
 
 export default nextConfig
