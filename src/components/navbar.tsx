@@ -7,7 +7,7 @@ import TransitionLink from "./utils/transition-link"
 const links = [
   { href: "/", label: "[h] home", key: "h", internal: true },
   { href: "/projects", label: "[p] projects", key: "p", internal: true },
-  { href: "https://www.sup-bud.ddns.net/", label: "[AI mera bhai]", external: true },
+  { href: "https://sup-bud.ddns.net/", label: "[AI mera bhai]", external: true },
   { href: "https://raft-in-motion.vercel.app/", label: "[raft~]", external: true },
 ]
 

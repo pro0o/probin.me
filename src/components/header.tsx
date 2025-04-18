@@ -1,5 +1,4 @@
 import { ScrambleText } from "@/components/scramble-text"
-import { MapPin } from "lucide-react"
 import { LinksSection } from "./links-section"
 
 export function Header() {
@@ -7,7 +6,7 @@ export function Header() {
     <header className="mb-16 space-y-4">
       <h1 className="text-4xl font-bold animate-fade-in text-white">
         <span className="inline-block">
-          
+        
           <a
             href="/media?ext=star"
             rel="noopener noreferrer"

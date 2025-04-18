@@ -19,7 +19,7 @@ const projectItems = [
     title: "sup-bud",
     imageSrc: "/22.png",
     description: "a tiny, intentionally simple programmming language from scratch.",
-    href: "https://www.sup-bud.ddns.net/",
+    href: "https://sup-bud.ddns.net/",
     technology: [
       "go",
       "wasm",

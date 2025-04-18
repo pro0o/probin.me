@@ -32,7 +32,7 @@ export function SectionList({
       <div className="space-y-8 mb-6 ">
         {items.map((item) => (
           <div key={item.title} className="relative group ">
-            <Link href={item.href}  className="block">
+            <Link href={item.href} target="_blank" className="block">
               <h3 className="text-xl font-semibold text-white/90 group-hover:text-accent transition-colors">
                 {item.title}
               </h3>
