@@ -11,7 +11,7 @@ const links = [
 export function LinksSection() {
   return (
     <section className="animate-fade-in-up">
-      <div className="w-fit mt-6 grid grid-cols-2 gap-6 tracking-tight sm:grid-cols-3 md:flex md:flex-row md:items-start">
+      <div className="w-fit mt-6 grid text-sm grid-cols-2 gap-6 tracking-tight sm:grid-cols-3 md:flex md:flex-row md:items-start">
         {links.map((link, index) => {
           const Icon = link.icon
           return (
@@ -22,7 +22,7 @@ export function LinksSection() {
               rel={link.target === "_blank" ? "noopener noreferrer" : undefined}
               className="group flex items-center text-accent transition duration-0 ease-in-out md:hover:bg-accent md:hover:text-gray-900"
             >
-              <span className="font-medium text-base">[ {link.title} ]</span>
+              <span className="font-medium">[ {link.title} ]</span>
             </Link>
           )
         })}

@@ -81,7 +81,7 @@ export function Navbar() {
   }, [router])
 
   return (
-    <nav className="max-w-2xl mx-auto items-center px-4 justify-between text-sm text-gray-400">
+    <nav className="max-w-lg mx-auto items-center text-xs px-4 justify-between text-gray-400">
       <div className="flex space-x-6">
         {links.map((link) => {
           if (link.external) {

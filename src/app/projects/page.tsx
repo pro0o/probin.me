@@ -120,8 +120,8 @@ const projects = [
 
 export default function ProjectsPage() {
   return (
-    <main className="animate-fade-in-up max-w-2xl mx-auto px-4 pt-16 pb-6 min-h-screen">
-      <h1 className="text-4xl font-bold mb-8 text-white">
+    <main className="animate-fade-in-up max-w-lg mx-auto px-4 pt-14 pb-6 min-h-screen">
+      <h1 className="text-2xl font-bold mb-8 text-white">
         <span className="text-accent mr-2">*</span>
         <ScrambleText text="projects" />
       </h1>

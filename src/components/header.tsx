@@ -3,8 +3,8 @@ import { LinksSection } from "./links-section"
 
 export function Header() {
   return (
-    <header className="mb-16 space-y-4">
-      <h1 className="text-4xl font-bold animate-fade-in text-white">
+    <header className="mb-16 text-sm space-y-4">
+      <h1 className="text-2xl font-bold animate-fade-in text-white">
         <span className="inline-block">
         
           <a
@@ -23,7 +23,7 @@ export function Header() {
           <img
             src="/ghilbi.gif"
             alt="Animated Ghibli character"
-            className="w-56 h-auto animate-fade-in opacity-60 hover:opacity-80"
+            className="w-52 h-auto animate-fade-in opacity-60 hover:opacity-80"
           />
         </a>
           </div>
@@ -39,10 +39,10 @@ export function Header() {
             </div>
       </div>
 
-      <p className="leading-relaxed text-md animate-fade-in-up text-gray-300">
+      <p className="leading-relaxed animate-fade-in-up text-gray-300">
         cs undergrad student at kathmandu university.
         <br/>
-        hmmm... design, backend & distributed sys. hmmm...
+        hmmm... design, backend & distributed sys. hmmm.........
         i design for me & for others using{" "}
         <a
           href="/media?ext=figma"

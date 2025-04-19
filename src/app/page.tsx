@@ -1,7 +1,9 @@
+'use client'
 import { Header } from "@/components/header"
 import { SectionList } from "@/components/section-list"
 import { MusicSection } from "@/components/music-section"
 import { Footer } from "@/components/footer"
+import { useEffect, useState, useRef } from "react"
 
 const projectItems = [
   {
@@ -28,12 +30,33 @@ const projectItems = [
 ]
 
 function Divider() {
-  return <div className="text-left text-zinc-600 my-2">************************</div>
+  const [stars, setStars] = useState("")
+  const ref = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const calculateStars = () => {
+      if (!ref.current) return
+      const containerWidth = ref.current.offsetWidth
+      const approxCharWidth = 8 
+      const starCount = Math.floor(containerWidth / approxCharWidth)
+      setStars("*".repeat(starCount))
+    }
+
+    calculateStars()
+    window.addEventListener("resize", calculateStars)
+    return () => window.removeEventListener("resize", calculateStars)
+  }, [])
+
+  return (
+    <div ref={ref} className="text-left text-zinc-600 my-4 font-mono whitespace-nowrap overflow-hidden">
+      {stars}
+    </div>
+  )
 }
 
 export default function HomePage() {
   return (
-    <div className="max-w-2xl mx-auto px-4 pt-16 pb-6 min-h-screen flex flex-col text-zinc-800">
+    <div className="max-w-lg mx-auto px-4 pt-14 pb-6 min-h-screen flex flex-col text-zinc-800">
       <Header />
       <Divider />
 

@@ -27,9 +27,9 @@ export function MusicSection() {
   ]
 
   return (
-    <section className="mb-16 animate-fade-in-up">
-      <h2 className="text-2xl font-bold mb-4 flex items-center text-white">
-        <span className="w-3 h-3 bg-accent inline-block mr-2"></span>&nbsp;music
+    <section className="mb-16 text-sm animate-fade-in-up">
+      <h2 className="text-xl font-bold mb-4 flex items-center text-white">
+        <span className="w-2 h-2 bg-accent inline-block mr-2"></span>&nbsp;music??
       </h2>
       <p className="leading-relaxed animate-fade-in-up mb-2 text-md text-zinc-300">
         the large portion of my time awake is spent listening to music. in fact, i&apos;m probably listening to some
@@ -45,7 +45,7 @@ export function MusicSection() {
               href={album.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-zinc-400 pl-6 font-medium lowercase text-sm transition-colors duration-0 ease-in-out hover:text-accent"
+              className="text-zinc-400 pl-6 font-medium lowercase transition-colors duration-0 ease-in-out hover:text-accent"
             >
               <span>
                 {album.title} by {album.artist} [{album.description}]
