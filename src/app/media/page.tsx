@@ -6,16 +6,16 @@ type Props = {
 
 export default async function MediaPage({ searchParams }: Props) {
   const ext = searchParams.ext
-  
+
   return (
-    <div className="flex justify-center items-center min-h-screen bg-zinc-900 text-white px-4">
-      <div className="w-full max-w-lg mx-auto pt-16 pb-6 animate-fade-in space-y-6">
+    <div className="text-zinc-200 animate-fade-in-up min-h-screen">
+      <div className="max-w-lg w-full mx-auto px-6 py-10 space-y-6">
         {ext === "figma" && (
           <div className="w-full">
             <img
               src="/sigma.png"
               alt="Image"
-              className="w-full h-auto rounded shadow-md object-contain"
+              className="w-full h-auto  shadow-md object-contain"
             />
           </div>
         )}
@@ -25,7 +25,7 @@ export default async function MediaPage({ searchParams }: Props) {
               controls
               autoPlay
               playsInline
-              className="w-full rounded shadow-md object-contain"
+              className="w-full  shadow-md object-contain"
               style={{ maxHeight: "70vh" }}
             >
               <source src="/wake-up-filthy.mp4" type="video/mp4" />
@@ -39,7 +39,7 @@ export default async function MediaPage({ searchParams }: Props) {
               controls
               autoPlay
               playsInline
-              className="w-full rounded shadow-md object-contain"
+              className="w-full  shadow-md object-contain"
               style={{ maxHeight: "70vh" }}
             >
               <source src="/star.mp4" type="video/mp4" />
@@ -52,7 +52,7 @@ export default async function MediaPage({ searchParams }: Props) {
             <img
               src="/all-of-me.jpg"
               alt="Masayoshi Album Art"
-              className="w-full h-auto rounded shadow-md object-contain"
+              className="w-full h-auto  shadow-md object-contain"
             />
             <audio controls autoPlay className="w-full">
               <source src="/masayoshi.mp3" type="audio/mpeg" />

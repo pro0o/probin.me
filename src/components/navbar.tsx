@@ -7,6 +7,7 @@ import TransitionLink from "./utils/transition-link"
 const links = [
   { href: "/", label: "[h] home", key: "h", internal: true },
   { href: "/projects", label: "[p] projects", key: "p", internal: true },
+  { href: "/music", label: "[m] music", key: "m", internal: true },
   { href: "https://sup-bud.ddns.net/", label: "[AI mera bhai]", external: true },
   { href: "https://raft-in-motion.vercel.app/", label: "[raft~]", external: true },
 ]
@@ -97,7 +98,6 @@ export function Navbar() {
               </Link>
             )
           }
-
           return (
             <TransitionLink
               key={link.href}

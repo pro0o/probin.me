@@ -1,5 +1,4 @@
 import { ScrambleText } from "@/components/scramble-text"
-
 import Link from "next/link"
 import { Mail, Github } from "lucide-react"
 
