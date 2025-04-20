@@ -1,5 +1,12 @@
 import { ScrambleText } from "@/components/scramble-text"
-import { LinksSection } from "./links-section"
+
+import Link from "next/link"
+import { Mail, Github } from "lucide-react"
+
+const links = [
+  { title: "email", href: "mailto:probinpun@gmail.com", icon: Mail, target: "_self" },
+  { title: "github", href: "https://github.com/pro0o", icon: Github, target: "_blank" },
+]
 
 export function Header() {
   return (
@@ -18,26 +25,6 @@ export function Header() {
           
         </span>
       </h1>
-      <div className="my-4 flex justify-start">
-        <a href="/media?ext=masayoshi">
-          <img
-            src="/ghilbi.gif"
-            alt="Animated Ghibli character"
-            className="w-52 h-auto animate-fade-in opacity-60 hover:opacity-80"
-          />
-        </a>
-          </div>
-          <div className="flex flex-col text-gray-400 mb-4">
-            <div className="flex items-center gap-2">
-              <a
-              href="/media?ext=filthy"
-              rel="noopener noreferrer"
-              className="hover:bg-accent hover:text-gray-900 transition mb-2 duration-0"
-            >
-            ~ filthy have to wake up someday.
-            </a>{" "} 
-            </div>
-      </div>
 
       <p className="leading-relaxed animate-fade-in-up text-gray-300">
         cs undergrad student at kathmandu university.
@@ -54,7 +41,24 @@ export function Header() {
         .
         mostly build using go & typescript.
       </p>
-      <LinksSection/>
+      <section className="animate-fade-in-up">
+      <div className="w-fit mt-6 grid text-sm grid-cols-2 gap-6 tracking-tight sm:grid-cols-3 md:flex md:flex-row md:items-start">
+        {links.map((link, index) => {
+          const Icon = link.icon
+          return (
+            <Link
+              key={index}
+              href={link.href}
+              target={link.target}
+              rel={link.target === "_blank" ? "noopener noreferrer" : undefined}
+              className="group flex items-center bg-accent md:hover:text-gray-900 transition duration-0 ease-in-out "
+            >
+              <span className="font-medium">[ {link.title} ]</span>
+            </Link>
+          )
+        })}
+      </div>
+    </section>
     </header>
   )
 }
