@@ -11,9 +11,8 @@ interface TransitionLinkProps extends LinkProps {
   onMouseLeave?: () => void;
 }
 
-function sleep(ms: number): Promise<void> {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
+// We can use a smaller delay for transitions
+const TRANSITION_DELAY = 10;
 
 const visitedRoutes = new Set<string>();
 
@@ -28,7 +27,7 @@ export default function TransitionLink({
   const router = useRouter();
   const pathname = usePathname();
   const [isClient, setIsClient] = useState(false);
-
+  
   useEffect(() => {
     setIsClient(true);
     if (pathname) {
@@ -38,7 +37,7 @@ export default function TransitionLink({
 
   const targetPath = href.split("?")[0] || "";
   const currentPath = pathname || "";
-
+  
   const handleTransition = async (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
     e.preventDefault();
     
@@ -48,17 +47,17 @@ export default function TransitionLink({
     
     window.dispatchEvent(new CustomEvent("pageTransitionStart"));
     
-    const isFirstVisit = targetPath && !visitedRoutes.has(targetPath);
     if (targetPath) {
       visitedRoutes.add(targetPath);
     }
     
-    // Faster transition times
-    await sleep(isFirstVisit ? 200 : 80);
-    router.push(href);
-    await sleep(isFirstVisit ? 150 : 50);
-    
-    window.dispatchEvent(new CustomEvent("pageTransitionComplete"));
+    // Immediate navigation with minimal delay
+    requestAnimationFrame(() => {
+      router.push(href);
+      requestAnimationFrame(() => {
+        window.dispatchEvent(new CustomEvent("pageTransitionComplete"));
+      });
+    });
   };
 
   return (
@@ -69,7 +68,6 @@ export default function TransitionLink({
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
       {...props}
-      // Enable prefetch for faster navigation
       prefetch={true}
     >
       {children}

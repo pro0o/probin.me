@@ -1,6 +1,6 @@
 "use client"
 import Image from "next/image"
-import { useState } from "react"
+import { useState, useEffect, useRef } from "react"
 import Link from "next/link"
 
 type ProjectCardProps = {
@@ -22,6 +22,34 @@ export function ProjectCard({
 }: ProjectCardProps) {
   
   const [activeSlide, setActiveSlide] = useState(0)
+  const [isVisible, setIsVisible] = useState(false)
+  const [imageLoaded, setImageLoaded] = useState(false)
+  const cardRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true)
+          observer.unobserve(entry.target)
+        }
+      },
+      {
+        threshold: 0.01, 
+        rootMargin: '0px 0px -200px 0px' 
+      }
+    )
+
+    if (cardRef.current) {
+      observer.observe(cardRef.current)
+    }
+
+    return () => {
+      if (cardRef.current) {
+        observer.unobserve(cardRef.current)
+      }
+    }
+  }, [])
 
   const handleSlideToggle = () => {
     setActiveSlide(activeSlide === 0 ? 1 : 0)
@@ -78,12 +106,23 @@ export function ProjectCard({
     >
       {imageSrc && (
         <>
+          <div 
+            className={`absolute inset-0 bg-gray-800 animate-pulse transition-opacity duration-500 ease-in-out ${
+              imageLoaded ? 'opacity-0' : 'opacity-100'
+            }`} 
+            aria-hidden="true"
+          />
+          
           <Image
             src={imageSrc}
             alt="Project preview"
             fill
-            className="object-cover grayscale group-hover:grayscale-0 transition-all duration-300 ease-in-out"
+            className={`object-cover grayscale group-hover:grayscale-0 transition-all duration-500 ease-in-out ${
+              imageLoaded ? 'opacity-100' : 'opacity-0'
+            }`}
             sizes="(max-width: 768px) 100vw, 512px"
+            onLoad={() => setImageLoaded(true)}
+            priority={isVisible}
           />
           <div className={`shader-layer specular holographic-gradient`}>
             <div className="shader-layer mask" />
@@ -94,9 +133,12 @@ export function ProjectCard({
   )
 
   return (
-    <div className="block border-2 border-gray-800/50 p-5 rounded-sm transition-all duration-300 hover:border-accent/60 relative group">
+    <div 
+      ref={cardRef}
+      className={`block border-2 border-gray-800/50 p-5 rounded-sm transition-all duration-300 hover:border-accent/30 relative group
+                ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-16'}`}
+    >
       <div className="relative">
-        {/* Slide indicators */}
         <div className="absolute top-4 right-4 flex space-x-2 z-10 bg-black/40 backdrop-blur-sm p-1 rounded shadow-md">
           {[0, 1].map((index) => (
             <span
@@ -110,7 +152,6 @@ export function ProjectCard({
           ))}
         </div>
 
-        {/* First slide - Description */}
         <div
           className={`w-full transition-all duration-500 ease-in-out ${
             activeSlide === 0 ? "block opacity-100" : "hidden opacity-0"
@@ -123,7 +164,6 @@ export function ProjectCard({
           {renderTechnologies()}
         </div>
 
-        {/* Second slide - Achievements */}
         <div
           className={`w-full transition-all duration-500 ease-in-out ${
             activeSlide === 1 ? "block opacity-100" : "hidden opacity-0"

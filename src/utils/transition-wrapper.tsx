@@ -1,5 +1,5 @@
-"use client";
 
+"use client";
 import React, { type ReactNode, useEffect, useState } from "react";
 
 interface TransitionWrapperProps {
@@ -14,9 +14,9 @@ export default function TransitionWrapper({
 
   useEffect(() => {
     if (isInitialLoad) {
-      setTimeout(() => {
+      requestAnimationFrame(() => {
         setIsInitialLoad(false);
-      }, 100);
+      });
     }
 
     const handleRouteChangeStart = () => {
@@ -24,23 +24,17 @@ export default function TransitionWrapper({
     };
 
     const handleRouteChangeComplete = () => {
-      setTimeout(() => {
+      requestAnimationFrame(() => {
         setIsTransitioning(false);
-      }, 300);
+      });
     };
 
     window.addEventListener("pageTransitionStart", handleRouteChangeStart);
-    window.addEventListener(
-      "pageTransitionComplete",
-      handleRouteChangeComplete
-    );
+    window.addEventListener("pageTransitionComplete", handleRouteChangeComplete);
 
     return () => {
       window.removeEventListener("pageTransitionStart", handleRouteChangeStart);
-      window.removeEventListener(
-        "pageTransitionComplete",
-        handleRouteChangeComplete
-      );
+      window.removeEventListener("pageTransitionComplete", handleRouteChangeComplete);
     };
   }, [isInitialLoad]);
 

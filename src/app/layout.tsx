@@ -1,15 +1,9 @@
 import type { Metadata } from "next"
-import { Geist_Mono } from "next/font/google"
+import { GeistMono } from "geist/font/mono"  // Change this line
 import "./globals.css"
 import { Navbar } from "../components/navbar"
 import Oneko from "@/components/oneko"
-import TransitionWrapper from "@/components/utils/transition-wrapper"
-
-const geistMono = Geist_Mono({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-geist-mono",
-})
+import TransitionWrapper from "@/utils/transition-wrapper"
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.probin.me"),
@@ -52,11 +46,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistMono.variable} antialiased min-h-screen font-mono`}
+        className={`${GeistMono.variable} antialiased min-h-screen font-mono`}
       >
         <div className="max-w-4xl mx-auto px-4 py-8">
           <Navbar />
-          <Oneko initialVariant="classic"  initialKuroNeko={false}/>
+          <Oneko initialVariant="classic" initialKuroNeko={false}/>
           <TransitionWrapper>{children}</TransitionWrapper>
         </div>
       </body>

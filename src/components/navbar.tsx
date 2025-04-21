@@ -2,7 +2,7 @@
 import { useRouter } from "next/navigation"
 import { useEffect } from "react"
 import Link from "next/link"
-import TransitionLink from "./utils/transition-link"
+import TransitionLink from "../utils/transition-link"
 
 const links = [
   { href: "/", label: "[h] home", key: "h", internal: true },
@@ -40,37 +40,29 @@ export function Navbar() {
       )
       
       if (matchedLink) {
-        // Prevent default behavior
         event.preventDefault()
         
         const currentPath = window.location.pathname
         const targetPath = matchedLink.href.split("?")[0] || ""
         
-        // Skip if we're already on the target page
         if (currentPath === targetPath) {
           return
         }
         
-        // Trigger the transition start event
         window.dispatchEvent(new CustomEvent("pageTransitionStart"))
         
-        // Check if this is the first visit to the target path
         const isFirstVisit = targetPath && !visitedRoutes.has(targetPath)
         
         if (targetPath) {
           visitedRoutes.add(targetPath)
         }
         
-        // Wait for transition animation
         await sleep(isFirstVisit ? 500 : 150)
         
-        // Navigate to the new page
         router.push(matchedLink.href)
         
-        // Wait for completion animation
         await sleep(isFirstVisit ? 500 : 150)
         
-        // Trigger the transition complete event
         window.dispatchEvent(new CustomEvent("pageTransitionComplete"))
       }
     }

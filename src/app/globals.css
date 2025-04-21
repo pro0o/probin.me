@@ -13,27 +13,22 @@ body {
   cursor: url("../app/assets/cursor.svg"), auto;
   color: var(--foreground);
   background: var(--background);
-}
-
-/* Hide scrollbar for most elements */
-::-webkit-scrollbar {
-  display: none;
-}
-
-html {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
 
-/* Noise effect */
+::-webkit-scrollbar {
+  display: none;
+}
+
 body::after {
   content: "";
   background-image: url("/framernoise.png");
-  height: 300%;
-  width: 300%;
   position: fixed;
   top: 0;
   left: 0;
+  height: 300%;
+  width: 300%;
   opacity: 0;
   pointer-events: none;
   z-index: 100;
@@ -41,52 +36,23 @@ body::after {
 }
 
 @keyframes fadeInGrain {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 0.015;
-  }
+  from { opacity: 0; }
+  to { opacity: 0.02; }
 }
 
 @keyframes animateGrain {
-  0%,
-  100% {
-    transform: translate(0, 0);
-  }
-  10% {
-    transform: translate(-5%, -10%);
-  }
-  20% {
-    transform: translate(-15%, -20%);
-  }
-  30% {
-    transform: translate(-5%, -10%);
-  }
-  40% {
-    transform: translate(-15%, -20%);
-  }
-  50% {
-    transform: translate(-5%, -10%);
-  }
-  60% {
-    transform: translate(-15%, -20%);
-  }
-  70% {
-    transform: translate(-5%, -10%);
-  }
-  80% {
-    transform: translate(-15%, -20%);
-  }
-  90% {
-    transform: translate(-5%, -10%);
-  }
-  100% {
-    transform: translate(-15%, -20%);
-  }
+  0%, 100% { transform: translate(0, 0); }
+  10% { transform: translate(-5%, -10%); }
+  20% { transform: translate(-15%, -20%); }
+  30% { transform: translate(-5%, -10%); }
+  40% { transform: translate(-15%, -20%); }
+  50% { transform: translate(-5%, -10%); }
+  60% { transform: translate(-15%, -20%); }
+  70% { transform: translate(-5%, -10%); }
+  80% { transform: translate(-15%, -20%); }
+  90% { transform: translate(-5%, -10%); }
 }
 
-/* Transition effects */
 .transition-wrapper {
   transition-property: opacity, transform, filter;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -111,12 +77,8 @@ body::after {
 }
 
 @keyframes fadeInPage {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 .shiki,
@@ -128,7 +90,12 @@ body::after {
   text-decoration: var(--shiki-dark-text-decoration) !important;
 }
 
-/* Show scrollbar only for code blocks */
+/* Code block styles */
+.code-block-container {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.3) rgba(255, 255, 255, 0.1);
+}
+
 .code-block-container::-webkit-scrollbar {
   display: block;
   height: 6px;
@@ -144,11 +111,6 @@ body::after {
 
 .code-block-container::-webkit-scrollbar-thumb:hover {
   background: rgba(255, 255, 255, 0.5);
-}
-
-.code-block-container {
-  scrollbar-width: thin;
-  scrollbar-color: rgba(255, 255, 255, 0.3) rgba(255, 255, 255, 0.1);
 }
 
 .code-block-container pre {
@@ -173,6 +135,10 @@ body::after {
 
 .prose pre {
   @apply overflow-x-auto border border-neutral-800 bg-[#111] my-4 rounded-none;
+}
+
+.prose code {
+  @apply font-medium;
 }
 
 .prose code:not(pre code) {

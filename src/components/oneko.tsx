@@ -39,7 +39,6 @@ const Oneko: React.FC<OnekoProps> = ({
     nekoEl.style.left = `${nekoPosX - 16}px`;
     nekoEl.style.top = `${nekoPosY - 16}px`;
 
-    // Parse from localStorage with fallback
     function parseLocalStorage(key: string, fallback: any) {
       try {
         const value = JSON.parse(localStorage.getItem(`oneko:${key}`) || 'null');
@@ -50,7 +49,6 @@ const Oneko: React.FC<OnekoProps> = ({
       }
     }
 
-    // Try to load saved settings
     variant = parseLocalStorage("variant", initialVariant);
 
     const nekoSpeed = 20;
@@ -121,11 +119,9 @@ const Oneko: React.FC<OnekoProps> = ({
       ],
     };
     
-    // Get keys with 2 or more sprites
     const keys = Object.keys(spriteSets).filter((key) => spriteSets[key].length > 1);
     const usedKeys = new Set<string>();
 
-    // Initialize neko element styles
     nekoEl.style.width = "32px";
     nekoEl.style.height = "32px";
     nekoEl.style.position = "fixed";
@@ -162,8 +158,6 @@ const Oneko: React.FC<OnekoProps> = ({
         return;
       }
 
-      // If you have a progress bar or specific element to sleep on, add your logic here
-      // For general implementation, we'll make it sleep in the center
       mousePosX = window.innerWidth / 2;
       mousePosY = window.innerHeight / 2;
     }
@@ -171,7 +165,6 @@ const Oneko: React.FC<OnekoProps> = ({
     function idle(): void {
       idleTime += 1;
 
-      // every ~ 20 seconds
       if (idleTime > 10 && Math.floor(Math.random() * 200) === 0 && idleAnimation === null) {
         let availableIdleAnimations = ["sleeping", "scratchSelf"];
         if (nekoPosX < 32) {
@@ -240,7 +233,6 @@ const Oneko: React.FC<OnekoProps> = ({
       const diffY = nekoPosY - mousePosY;
       const distance = Math.sqrt(diffX ** 2 + diffY ** 2);
 
-      // Cat has to sleep on top of the target position
       if (forceSleep && Math.abs(diffY) < nekoSpeed && Math.abs(diffX) < nekoSpeed) {
         nekoPosX = mousePosX;
         nekoPosY = mousePosY;
@@ -261,7 +253,6 @@ const Oneko: React.FC<OnekoProps> = ({
 
       if (idleTime > 1) {
         setSprite("alert", 0);
-        // count down after being alerted before moving
         idleTime = Math.min(idleTime, 7);
         idleTime -= 1;
         return;
@@ -283,7 +274,6 @@ const Oneko: React.FC<OnekoProps> = ({
       nekoEl.style.top = `${nekoPosY - 16}px`;
     }
 
-    // Event listeners
     const mouseMoveHandler = (e: MouseEvent) => {
       if (forceSleep) return;
       mousePosX = e.clientX;
@@ -305,7 +295,6 @@ const Oneko: React.FC<OnekoProps> = ({
         const absDeltaX = Math.abs(deltaX);
         const absDeltaY = Math.abs(deltaY);
 
-        // Scratch in the opposite direction of the drag
         if (absDeltaX > absDeltaY && absDeltaX > 10) {
           setSprite(deltaX > 0 ? "scratchWallW" : "scratchWallE", frameCount);
         } else if (absDeltaY > absDeltaX && absDeltaY > 10) {
@@ -361,22 +350,18 @@ const Oneko: React.FC<OnekoProps> = ({
       }
     };
 
-    // Add event listeners
     window.addEventListener("mousemove", mouseMoveHandler);
     nekoEl.addEventListener("mousedown", mouseDownHandler);
     nekoEl.addEventListener("contextmenu", contextMenuHandler);
     nekoEl.addEventListener("dblclick", dblClickHandler);
     window.addEventListener("resize", resizeHandler);
 
-    // Start animation loop
     intervalRef.current = window.setInterval(frame, 100);
 
-    // Apply initial sleep if needed
     if (forceSleep) {
       sleep();
     }
 
-    // Cleanup function
     return () => {
       window.removeEventListener("mousemove", mouseMoveHandler);
       nekoEl.removeEventListener("mousedown", mouseDownHandler);
