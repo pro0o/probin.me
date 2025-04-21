@@ -107,7 +107,7 @@ export function ProjectCard({
       {imageSrc && (
         <>
           <div 
-            className={`absolute inset-0 bg-gray-800 animate-pulse transition-opacity duration-500 ease-in-out ${
+            className={`absolute inset-0 bg-zinc-900 animate-pulse transition-opacity duration-500 ease-in-out ${
               imageLoaded ? 'opacity-0' : 'opacity-100'
             }`} 
             aria-hidden="true"
@@ -117,7 +117,7 @@ export function ProjectCard({
             src={imageSrc}
             alt="Project preview"
             fill
-            className={`object-cover grayscale group-hover:grayscale-0 transition-all duration-500 ease-in-out ${
+            className={`object-cover grayscale group-hover:grayscale-0 transition-all duration-300 ease-in-out ${
               imageLoaded ? 'opacity-100' : 'opacity-0'
             }`}
             sizes="(max-width: 768px) 100vw, 512px"
