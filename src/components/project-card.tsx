@@ -135,7 +135,7 @@ export function ProjectCard({
   return (
     <div 
       ref={cardRef}
-      className={`block border-2 border-gray-800/50 p-5 rounded-sm transition-all duration-300 hover:border-accent/30 relative group
+      className={`block border-2 border-gray-800/50 p-5 rounded-sm transition-all duration-300 hover:border-accent/50 relative group
                 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-16'}`}
     >
       <div className="relative">
