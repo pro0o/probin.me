@@ -1,58 +1,147 @@
+"use client"
+import Image from "next/image"
+import { useState } from "react"
 import Link from "next/link"
-import { ArrowUpRight } from "lucide-react"
 
 type ProjectCardProps = {
-  title: string
   description: string
   achievements: string[]
   technologies: string[]
-  href: string
+  websiteUrl?: string
+  codeUrl?: string
+  imageSrc?: string
 }
 
-export function ProjectCard({ title, description, achievements, technologies, href }: ProjectCardProps) {
-  return (
-    <Link
-      href={href}
-      target="_blank"
-      className="block group border-2 border-gray-800/50 p-6 transition-all duration-300 hover:border-accent/60"
-    >
-      <div className="flex justify-between items-start mb-4">
-        <h2 className="text-lg font-bold text-white group-hover:text-accent transition-colors duration-300">{title}</h2>
-        <ArrowUpRight className="w-5 h-5 text-gray-400 group-hover:text-accent transition-all duration-300 transform group-hover:translate-x-2 group-hover:rotate-45 " />
+export function ProjectCard({
+  description,
+  achievements,
+  technologies,
+  websiteUrl,
+  codeUrl,
+  imageSrc,
+}: ProjectCardProps) {
+  
+  const [activeSlide, setActiveSlide] = useState(0)
+
+  const handleSlideToggle = () => {
+    setActiveSlide(activeSlide === 0 ? 1 : 0)
+  }
+
+  const renderLinks = () => (
+    <div className="flex gap-2 text-zinc-200">
+      {websiteUrl && (
+        <Link
+          href={websiteUrl}
+          target="_blank"
+          className="text-sm px-2 py-1 underline hover:text-zinc-900 hover:bg-accent transition-colors"
+        >
+          website
+        </Link>
+      )}
+      {codeUrl && (
+        <Link
+          href={codeUrl}
+          target="_blank"
+          className="text-sm px-2 py-1 underline hover:text-zinc-900 hover:bg-accent transition-colors"
+        >
+          code
+        </Link>
+      )}
+    </div>
+  )
+
+  const renderTechnologies = () => (
+    <div className="mb-6">
+      <div className="flex justify-between items-center mb-2">
+        <h3 className="text-gray-200 text-base font-semibold transition-colors duration-300">
+          technologies
+        </h3>
+        {renderLinks()}
       </div>
+      <div className="flex flex-wrap gap-2 text-xs">
+        {technologies.map((tech) => (
+          <span
+            key={tech}
+            className="px-2 py-1 text-gray-300 rounded-sm bg-gray-800/50 transition-colors duration-300"
+          >
+            {tech.toLowerCase()}
+          </span>
+        ))}
+      </div>
+    </div>
+  )
 
-      <p className="text-gray-300 text-sm mb-6 group-hover:text-gray-200 transition-colors duration-300">
-        {description}
-      </p>
+  const renderImage = () => (
+    <div
+      className="w-full aspect-[32/11] relative mb-4 cursor-pointer group"
+      onClick={handleSlideToggle}
+    >
+      {imageSrc && (
+        <>
+          <Image
+            src={imageSrc}
+            alt="Project preview"
+            fill
+            className="object-cover grayscale group-hover:grayscale-0 transition-all duration-300 ease-in-out"
+            sizes="(max-width: 768px) 100vw, 512px"
+          />
+          <div className={`shader-layer specular holographic-gradient`}>
+            <div className="shader-layer mask" />
+          </div>
+        </>
+      )}
+    </div>
+  )
 
-      <div className="space-y-6">
-        <div>
-          <h3 className="text-white text-sm font-semibold mb-2 group-hover:text-accent/90 transition-colors duration-300">
-            key features
-          </h3>
-          <ul className="list-disc list-inside text-sm space-y-1 text-gray-400 group-hover:text-gray-300 transition-colors duration-300">
-            {achievements.map((achievement, index) => (
-              <li key={index}>{achievement}</li>
-            ))}
-          </ul>
+  return (
+    <div className="block border-2 border-gray-800/50 p-5 rounded-sm transition-all duration-300 hover:border-accent/60 relative group">
+      <div className="relative">
+        {/* Slide indicators */}
+        <div className="absolute top-4 right-4 flex space-x-2 z-10 bg-black/40 backdrop-blur-sm p-1 rounded shadow-md">
+          {[0, 1].map((index) => (
+            <span
+              key={index}
+              onClick={() => setActiveSlide(index)}
+              className={`w-2.5 h-2.5 rounded-full transition-all duration-300 cursor-pointer ${
+                activeSlide === index ? "bg-accent" : "bg-gray-600"
+              }`}
+              aria-label={`Slide ${index + 1} indicator`}
+            />
+          ))}
         </div>
 
-        <div>
-          <h3 className="text-white text-sm font-semibold mb-2 group-hover:text-accent/90 transition-colors duration-300">
-            technologies
-          </h3>
-          <div className="flex flex-wrap gap-2 text-xs">
-            {technologies.map((tech) => (
-              <span
-                key={tech}
-                className="px-2 py-1 text-gray-300 bg-gray-800/50 transition-colors duration-300 group-hover:bg-accent/10 group-hover:text-gray-200"
-              >
-                {tech.toLowerCase()}
-              </span>
-            ))}
+        {/* First slide - Description */}
+        <div
+          className={`w-full transition-all duration-500 ease-in-out ${
+            activeSlide === 0 ? "block opacity-100" : "hidden opacity-0"
+          }`}
+        >
+          {renderImage()}
+          <p className="text-gray-400 text-sm mb-6 transition-colors duration-300">
+            {description}
+          </p>
+          {renderTechnologies()}
+        </div>
+
+        {/* Second slide - Achievements */}
+        <div
+          className={`w-full transition-all duration-500 ease-in-out ${
+            activeSlide === 1 ? "block opacity-100" : "hidden opacity-0"
+          }`}
+        >
+          {renderImage()}
+          <div className="space-y-6">
+            <div>
+              <ul className="list-disc list-inside text-sm space-y-1 text-gray-400 transition-colors duration-300">
+                {achievements.map((achievement, index) => (
+                  <li key={index}>{achievement}</li>
+                ))}
+              </ul>
+            </div>
+            {renderTechnologies()}
           </div>
         </div>
       </div>
-    </Link>
+    </div>
   )
 }

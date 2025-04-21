@@ -2,29 +2,28 @@
 
 import Link from "next/link"
 import { ScrambleText } from "@/components/scramble-text"
-import { useEffect, useState, useRef } from "react"
 import { Mail, Github } from "lucide-react"
 
 const links = [
-  { title: "email", href: "mailto:probinpun@gmail.com", icon: Mail, target: "_self" },
-  { title: "github", href: "https://github.com/pro0o", icon: Github, target: "_blank" },
+  { title: "email", href: "mailto:probinpun@gmail.com", target: "_self" },
+  { title: "github", href: "https://github.com/pro0o", target: "_blank" },
 ]
 
 function Divider() {
   return (
-    <div className="text-left text-zinc-400 my-4 font-mono whitespace-nowrap overflow-hidden">
-    ******************
+    <div className="text-left text-zinc-400 my-4 font-mono whitespace-nowrap overflow-hidden text-base">
+      ******************
     </div>
   )
 }
 
 export default function HomePage() {
   return (
-    <div className="text-zinc-200 animate-fade-in-up max-w-lg mx-auto pt-14 pb-6 min-h-screen">
+    <div className="text-zinc-200 animate-fade-in-up max-w-lg mx-auto pt-14 pb-6 min-h-screen text-base">
       <div className="max-w-lg w-full px-6 py-10">
 
-        <header className="mb-8 space-y-4 ">
-          <h1 className="text-3xl font-bold ">
+        <header className="mb-8 space-y-5">
+          <h1 className="text-4xl font-bold">
             <span className="inline-flex items-center">
               <a
                 href="/media?ext=star"
@@ -67,9 +66,8 @@ export default function HomePage() {
         </header>
 
         <section className="animate-fade-in-up">
-          <div className="w-fit mt-6 grid text-sm grid-cols-2 gap-6 tracking-tight sm:grid-cols-3 md:flex md:flex-row md:items-start">
+          <div className="w-fit mt-6 grid text-md grid-cols-2 gap-6 tracking-tight sm:grid-cols-3 md:flex md:flex-row md:items-start">
             {links.map((link, index) => {
-              const Icon = link.icon
               return (
                 <Link
                   key={index}

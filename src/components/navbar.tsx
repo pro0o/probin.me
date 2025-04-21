@@ -8,8 +8,6 @@ const links = [
   { href: "/", label: "[h] home", key: "h", internal: true },
   { href: "/projects", label: "[p] projects", key: "p", internal: true },
   { href: "/music", label: "[m] music", key: "m", internal: true },
-  { href: "https://sup-bud.ddns.net/", label: "[AI mera bhai]", external: true },
-  { href: "https://raft-in-motion.vercel.app/", label: "[raft~]", external: true },
 ]
 
 function sleep(ms: number): Promise<void> {
@@ -82,22 +80,9 @@ export function Navbar() {
   }, [router])
 
   return (
-    <nav className="max-w-lg mx-auto items-center text-xs px-4 justify-between text-gray-400">
+    <nav className="max-w-lg mx-auto items-center text-sm px-6 justify-between text-gray-400">
       <div className="flex space-x-6">
         {links.map((link) => {
-          if (link.external) {
-            return (
-              <Link
-                key={link.href}
-                href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:bg-accent hover:text-gray-900 duration-0 transition-colors"
-              >
-                {link.label}
-              </Link>
-            )
-          }
           return (
             <TransitionLink
               key={link.href}
