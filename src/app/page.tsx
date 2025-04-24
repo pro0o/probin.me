@@ -10,7 +10,7 @@ const links = [
 
 function Divider() {
   return (
-    <div className="text-left text-zinc-400 my-4 font-mono whitespace-nowrap overflow-hidden text-base">
+    <div className="text-left text-zinc-400 my-4 font-mono whitespace-nowrap overflow-hidden text-sm">
       ******************
     </div>
   )

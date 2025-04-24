@@ -11,8 +11,9 @@ interface TransitionLinkProps extends LinkProps {
   onMouseLeave?: () => void;
 }
 
-// We can use a smaller delay for transitions
-const TRANSITION_DELAY = 10;
+function sleep(ms: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
 
 const visitedRoutes = new Set<string>();
 
@@ -46,18 +47,15 @@ export default function TransitionLink({
     }
     
     window.dispatchEvent(new CustomEvent("pageTransitionStart"));
-    
-    if (targetPath) {
-      visitedRoutes.add(targetPath);
-    }
-    
-    // Immediate navigation with minimal delay
-    requestAnimationFrame(() => {
-      router.push(href);
-      requestAnimationFrame(() => {
-        window.dispatchEvent(new CustomEvent("pageTransitionComplete"));
-      });
-    });
+
+    const isFirstVisit = !visitedRoutes.has(targetPath);
+    visitedRoutes.add(targetPath);
+
+    await sleep(isFirstVisit ? 500 : 150);
+    router.push(href);
+    await sleep(isFirstVisit ? 500 : 150);
+
+    window.dispatchEvent(new CustomEvent("pageTransitionComplete"));
   };
 
   return (
@@ -68,7 +66,7 @@ export default function TransitionLink({
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
       {...props}
-      prefetch={true}
+      prefetch
     >
       {children}
     </Link>

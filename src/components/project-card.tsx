@@ -1,6 +1,6 @@
 "use client"
 import Image from "next/image"
-import { useState, useEffect, useRef } from "react"
+import { useState, useRef } from "react"
 import Link from "next/link"
 
 type ProjectCardProps = {
@@ -22,34 +22,8 @@ export function ProjectCard({
 }: ProjectCardProps) {
   
   const [activeSlide, setActiveSlide] = useState(0)
-  const [isVisible, setIsVisible] = useState(false)
   const [imageLoaded, setImageLoaded] = useState(false)
   const cardRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true)
-          observer.unobserve(entry.target)
-        }
-      },
-      {
-        threshold: 0.01, 
-        rootMargin: '0px 0px -200px 0px' 
-      }
-    )
-
-    if (cardRef.current) {
-      observer.observe(cardRef.current)
-    }
-
-    return () => {
-      if (cardRef.current) {
-        observer.unobserve(cardRef.current)
-      }
-    }
-  }, [])
 
   const handleSlideToggle = () => {
     setActiveSlide(activeSlide === 0 ? 1 : 0)
@@ -122,7 +96,7 @@ export function ProjectCard({
             }`}
             sizes="(max-width: 768px) 100vw, 512px"
             onLoad={() => setImageLoaded(true)}
-            priority={isVisible}
+            priority={true}
           />
           <div className={`shader-layer specular holographic-gradient`}>
             <div className="shader-layer mask" />
@@ -135,8 +109,7 @@ export function ProjectCard({
   return (
     <div 
       ref={cardRef}
-      className={`block border-2 border-gray-800/50 p-5 rounded-sm transition-all duration-300 hover:border-accent/50 relative group
-                ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-16'}`}
+      className="block border-2 border-gray-800/50 p-5 rounded-sm transition-all duration-300 hover:border-accent/50 relative group"
     >
       <div className="relative">
         <div className="absolute top-4 right-4 flex space-x-2 z-10 bg-black/40 backdrop-blur-sm p-1 rounded shadow-md">
