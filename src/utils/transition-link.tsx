@@ -51,9 +51,9 @@ export default function TransitionLink({
     const isFirstVisit = !visitedRoutes.has(targetPath);
     visitedRoutes.add(targetPath);
 
-    await sleep(isFirstVisit ? 500 : 150);
+    await sleep(isFirstVisit ? 200 : 150);
     router.push(href);
-    await sleep(isFirstVisit ? 500 : 150);
+    await sleep(isFirstVisit ? 200 : 150);
 
     window.dispatchEvent(new CustomEvent("pageTransitionComplete"));
   };
