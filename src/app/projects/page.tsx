@@ -34,10 +34,6 @@ export default function ProjectsPage() {
         </h1>
       </header>
 
-      <p className="leading-relaxed text-zinc-400 text-base mb-8">
-        an unordered list of projects i've worked on, with links provided for the ones that are more consumable:
-      </p>
-
       <section
         className="transition-all duration-300"
         aria-label="Projects list"
