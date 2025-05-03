@@ -75,7 +75,7 @@ export function ProjectCard({
 
   const renderImage = () => (
     <div
-      className="w-full aspect-[32/11] relative mb-4 cursor-pointer group"
+      className="w-full aspect-[32/11] relative mb-4 cursor-pointer group overflow-hidden"
       onClick={handleSlideToggle}
     >
       {imageSrc && (
@@ -91,7 +91,7 @@ export function ProjectCard({
             src={imageSrc}
             alt="Project preview"
             fill
-            className={`object-cover grayscale group-hover:grayscale-0 transition-all duration-300 ease-in-out ${
+            className={`object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 ease-out transform group-hover:scale-[1.03] ${
               imageLoaded ? 'opacity-100' : 'opacity-0'
             }`}
             sizes="(max-width: 768px) 100vw, 512px"

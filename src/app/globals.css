@@ -37,7 +37,7 @@ body::after {
 
 @keyframes fadeInGrain {
   from { opacity: 0; }
-  to { opacity: 0.02; }
+  to { opacity: 0.015; }
 }
 
 @keyframes animateGrain {

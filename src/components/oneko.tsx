@@ -6,12 +6,14 @@ interface OnekoProps {
   initialVariant?: string;
   initialKuroNeko?: boolean;
   initialForceSleep?: boolean;
+  size?: number; // Added size prop with default value defined in component
 }
 
 const Oneko: React.FC<OnekoProps> = ({
   initialVariant = 'classic',
   initialKuroNeko = false,
   initialForceSleep = false,
+  size = 28, // Slightly increased from 26px but still smaller than original 32px
 }) => {
   const nekoRef = useRef<HTMLDivElement>(null);
   const intervalRef = useRef<number | null>(null);
@@ -19,8 +21,8 @@ const Oneko: React.FC<OnekoProps> = ({
   useEffect(() => {
     if (typeof window === 'undefined' || !nekoRef.current) return;
     
-    let nekoPosX = typeof window !== 'undefined' ? window.innerWidth / 2 : 32;
-    let nekoPosY = typeof window !== 'undefined' ? window.innerHeight / 2 : 32;
+    let nekoPosX = typeof window !== 'undefined' ? window.innerWidth / 2 : size;
+    let nekoPosY = typeof window !== 'undefined' ? window.innerHeight / 2 : size;
     
     let mousePosX = typeof window !== 'undefined' ? window.innerWidth / 2 : 0;
     let mousePosY = typeof window !== 'undefined' ? window.innerHeight / 2 : 0;
@@ -34,10 +36,14 @@ const Oneko: React.FC<OnekoProps> = ({
     let nudge = false;
     let kuroNeko = initialKuroNeko;
     let variant = initialVariant;
+    
+    // Calculate size ratio for positioning
+    const sizeRatio = size / 32;
+    const halfSize = size / 2;
 
     const nekoEl = nekoRef.current;
-    nekoEl.style.left = `${nekoPosX - 16}px`;
-    nekoEl.style.top = `${nekoPosY - 16}px`;
+    nekoEl.style.left = `${nekoPosX - halfSize}px`;
+    nekoEl.style.top = `${nekoPosY - halfSize}px`;
 
     function parseLocalStorage(key: string, fallback: any) {
       try {
@@ -51,7 +57,7 @@ const Oneko: React.FC<OnekoProps> = ({
 
     variant = parseLocalStorage("variant", initialVariant);
 
-    const nekoSpeed = 20;
+    const nekoSpeed = 20 * sizeRatio;
     const variants = [
       ["classic", "Classic"],
     ];
@@ -122,13 +128,14 @@ const Oneko: React.FC<OnekoProps> = ({
     const keys = Object.keys(spriteSets).filter((key) => spriteSets[key].length > 1);
     const usedKeys = new Set<string>();
 
-    nekoEl.style.width = "32px";
-    nekoEl.style.height = "32px";
+    nekoEl.style.width = `${size}px`;
+    nekoEl.style.height = `${size}px`;
     nekoEl.style.position = "fixed";
     nekoEl.style.backgroundImage = `url('/oneko-classic.gif')`;
     nekoEl.style.imageRendering = "pixelated";
-    nekoEl.style.left = `${nekoPosX - 16}px`;
-    nekoEl.style.top = `${nekoPosY - 16}px`;
+    nekoEl.style.backgroundSize = `${size * 8}px ${size * 4}px`; // Scale background size proportionally
+    nekoEl.style.left = `${nekoPosX - halfSize}px`;
+    nekoEl.style.top = `${nekoPosY - halfSize}px`;
     nekoEl.style.filter = kuroNeko ? "invert(100%)" : "none";
     nekoEl.style.zIndex = "99";
     nekoEl.style.opacity = "0.7";
@@ -140,7 +147,7 @@ const Oneko: React.FC<OnekoProps> = ({
 
     function setSprite(name: string, frame: number): void {
       const sprite = getSprite(name, frame);
-      nekoEl.style.backgroundPosition = `${sprite[0] * 32}px ${sprite[1] * 32}px`;
+      nekoEl.style.backgroundPosition = `${sprite[0] * size}px ${sprite[1] * size}px`;
     }
 
     function resetIdleAnimation(): void {
@@ -167,16 +174,16 @@ const Oneko: React.FC<OnekoProps> = ({
 
       if (idleTime > 10 && Math.floor(Math.random() * 200) === 0 && idleAnimation === null) {
         let availableIdleAnimations = ["sleeping", "scratchSelf"];
-        if (nekoPosX < 32) {
+        if (nekoPosX < size) {
           availableIdleAnimations.push("scratchWallW");
         }
-        if (nekoPosY < 32) {
+        if (nekoPosY < size) {
           availableIdleAnimations.push("scratchWallN");
         }
-        if (nekoPosX > window.innerWidth - 32) {
+        if (nekoPosX > window.innerWidth - size) {
           availableIdleAnimations.push("scratchWallE");
         }
-        if (nekoPosY > window.innerHeight - 32) {
+        if (nekoPosY > window.innerHeight - size) {
           availableIdleAnimations.push("scratchWallS");
         }
         idleAnimation = availableIdleAnimations[Math.floor(Math.random() * availableIdleAnimations.length)];
@@ -236,14 +243,14 @@ const Oneko: React.FC<OnekoProps> = ({
       if (forceSleep && Math.abs(diffY) < nekoSpeed && Math.abs(diffX) < nekoSpeed) {
         nekoPosX = mousePosX;
         nekoPosY = mousePosY;
-        nekoEl.style.left = `${nekoPosX - 16}px`;
-        nekoEl.style.top = `${nekoPosY - 16}px`;
+        nekoEl.style.left = `${nekoPosX - halfSize}px`;
+        nekoEl.style.top = `${nekoPosY - halfSize}px`;
 
         idle();
         return;
       }
 
-      if ((distance < nekoSpeed || distance < 48) && !forceSleep) {
+      if ((distance < nekoSpeed || distance < 48 * sizeRatio) && !forceSleep) {
         idle();
         return;
       }
@@ -267,11 +274,11 @@ const Oneko: React.FC<OnekoProps> = ({
       nekoPosX -= (diffX / distance) * nekoSpeed;
       nekoPosY -= (diffY / distance) * nekoSpeed;
 
-      nekoPosX = Math.min(Math.max(16, nekoPosX), window.innerWidth - 16);
-      nekoPosY = Math.min(Math.max(16, nekoPosY), window.innerHeight - 16);
+      nekoPosX = Math.min(Math.max(halfSize, nekoPosX), window.innerWidth - halfSize);
+      nekoPosY = Math.min(Math.max(halfSize, nekoPosY), window.innerHeight - halfSize);
 
-      nekoEl.style.left = `${nekoPosX - 16}px`;
-      nekoEl.style.top = `${nekoPosY - 16}px`;
+      nekoEl.style.left = `${nekoPosX - halfSize}px`;
+      nekoEl.style.top = `${nekoPosY - halfSize}px`;
     }
 
     const mouseMoveHandler = (e: MouseEvent) => {
@@ -316,8 +323,8 @@ const Oneko: React.FC<OnekoProps> = ({
 
         nekoPosX = startNekoX + e.clientX - startX;
         nekoPosY = startNekoY + e.clientY - startY;
-        nekoEl.style.left = `${nekoPosX - 16}px`;
-        nekoEl.style.top = `${nekoPosY - 16}px`;
+        nekoEl.style.left = `${nekoPosX - halfSize}px`;
+        nekoEl.style.top = `${nekoPosY - halfSize}px`;
       };
 
       const mouseup = () => {
@@ -374,7 +381,7 @@ const Oneko: React.FC<OnekoProps> = ({
         intervalRef.current = null;
       }
     };
-  }, [initialForceSleep, initialKuroNeko, initialVariant]);
+  }, [initialForceSleep, initialKuroNeko, initialVariant, size]);
 
   return <div ref={nekoRef} id="oneko" />;
 };
