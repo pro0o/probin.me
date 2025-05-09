@@ -19,7 +19,7 @@ export default function ProjectsPage() {
   return (
     <main className="animate-fade-in-up max-w-lg mx-auto px-6 pt-24 pb-6 min-h-screen">
       <header className="flex flex-col sm:flex-row sm:items-end sm:justify-between w-full mb-6 gap-4 sm:gap-0">
-        <h1 className="text-5xl font-bold text-white tracking-tight">
+        <h1 className="text-5xl font-bold text-white tracking-[-0.095em]">
           <span className="inline-flex items-center flex-wrap">
             <a
               href="/media?ext=star"
