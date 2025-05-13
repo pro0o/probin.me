@@ -55,7 +55,7 @@ export function ProjectCard({
   const renderTechnologies = () => (
     <div className="mb-6">
       <div className="flex justify-between items-center mb-2">
-        <h3 className="text-gray-200 text-base font-semibold transition-colors duration-300">
+        <h3 className="text-gray-200 text-sm font-semibold transition-colors duration-300">
           technologies
         </h3>
         {renderLinks()}

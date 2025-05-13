@@ -18,7 +18,7 @@ export function Header() {
         </span>
       </h1>
 
-      <div className="flex flex-col text-zinc-400 text-base">
+      <div className="flex flex-col text-zinc-400 text-sm">
         <div className="flex items-center gap-2 mb-2">
           <a
             href="/media?ext=filthy"
@@ -30,7 +30,7 @@ export function Header() {
         </div>
       </div>
 
-      <p className="leading-relaxed text-zinc-300 text-base">
+      <p className="leading-relaxed text-zinc-300 text-sm">
         cs undergrad student at kathmandu university.
         <br />
         hmmm... design, backend & distributed sys.

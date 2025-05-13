@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  --background: #111;
+  --background: #0e0e0e;
   --foreground: #d1d5db;
   scroll-behavior: smooth;
 }
