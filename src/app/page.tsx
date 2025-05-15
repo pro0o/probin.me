@@ -23,7 +23,7 @@ export default function HomePage() {
                   href={link.href}
                   target={link.target}
                   rel={link.target === "_blank" ? "noopener noreferrer" : undefined}
-                  className="group flex items-center text-accent text-sm transition duration-0 ease-in-out md:hover:bg-accent md:hover:text-gray-900"
+                  className="group flex items-center text-accent text-md transition duration-0 ease-in-out md:hover:bg-accent md:hover:text-gray-900"
                 >
                   <span className="font-semibold">[ {link.title} ]</span>
                 </Link>

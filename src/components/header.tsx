@@ -31,20 +31,24 @@ export function Header() {
       </div>
 
       <p className="leading-relaxed text-zinc-300 text-sm">
-        cs undergrad student at kathmandu university.
-        <br />
-        hmmm... design, backend & distributed sys.
-        <br />
-        i design for me & for others using{" "}
-        <a
-          href="/media?ext=figma"
-          rel="noopener noreferrer"
-          className="hover:bg-accent hover:text-gray-900 transition-colors"
-        >
-          figma
-        </a>
-        . mostly build using go & typescript.
-      </p>
+  cs undergrad student at kathmandu university. 
+  <br />
+  hmmm...
+  <span className="bg-accent text-gray-900">
+     design, backend & distributed sys.
+  </span>
+  <br />
+  i design for me & for others using{" "}
+  <a
+    href="/media?ext=figma"
+    rel="noopener noreferrer"
+    className="hover:bg-accent hover:text-gray-900 transition-colors"
+  >
+    figma
+  </a>
+  . mostly build using go & typescript.
+</p>
+      
     </header>
   )
 }
