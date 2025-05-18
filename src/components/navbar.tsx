@@ -1,7 +1,6 @@
 "use client"
-import { useRouter } from "next/navigation"
+import { useRouter, usePathname } from "next/navigation"
 import { useEffect } from "react"
-import Link from "next/link"
 import TransitionLink from "../utils/transition-link"
 
 const links = [
@@ -18,6 +17,7 @@ const visitedRoutes = new Set<string>();
 
 export function Navbar() {
   const router = useRouter()
+  const pathname = usePathname()
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -72,20 +72,23 @@ export function Navbar() {
   }, [router])
 
   return (
-    <nav className="max-w-lg mx-auto items-center text-sm px-6 justify-between text-gray-400">
-      <div className="flex space-x-6">
-        {links.map((link) => {
-          return (
+    <nav
+      className="max-w-lg mx-auto items-center text-sm px-6 justify-between text-gray-400"
+      aria-label="Main navigation"
+    >
+      <ul className="flex space-x-6">
+        {links.map((link) => (
+          <li key={link.href}>
             <TransitionLink
-              key={link.href}
               href={link.href}
               className="hover:bg-accent hover:text-gray-900 duration-0 transition-colors"
+              aria-current={pathname === link.href ? "page" : undefined}
             >
               {link.label}
             </TransitionLink>
-          )
-        })}
-      </div>
+          </li>
+        ))}
+      </ul>
     </nav>
   )
 }

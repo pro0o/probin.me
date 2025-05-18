@@ -1,4 +1,3 @@
-
 export const projects = [
     {
       description: "simulate the core features of raft consensus algorithm.",

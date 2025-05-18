@@ -35,7 +35,7 @@ export function ProjectCard({
         <Link
           href={websiteUrl}
           target="_blank"
-          className="text-sm px-2 py-1 underline hover:text-zinc-900 hover:bg-accent transition-colors"
+          className="text-base px-2 py-1 underline hover:text-zinc-900 hover:bg-accent transition-colors"
         >
           website
         </Link>
@@ -44,7 +44,7 @@ export function ProjectCard({
         <Link
           href={codeUrl}
           target="_blank"
-          className="text-sm px-2 py-1 underline hover:text-zinc-900 hover:bg-accent transition-colors"
+          className="text-base px-2 py-1 underline hover:text-zinc-900 hover:bg-accent transition-colors"
         >
           code
         </Link>
@@ -55,16 +55,16 @@ export function ProjectCard({
   const renderTechnologies = () => (
     <div className="mb-6">
       <div className="flex justify-between items-center mb-2">
-        <h3 className="text-gray-200 text-sm font-semibold transition-colors duration-300">
+        <h3 className="text-gray-200 font-medium transition-colors duration-300">
           technologies
         </h3>
         {renderLinks()}
       </div>
-      <div className="flex flex-wrap gap-2 text-xs">
+      <div className="flex flex-wrap gap-2 ">
         {technologies.map((tech) => (
           <span
             key={tech}
-            className="px-2 py-1 text-gray-300 rounded-sm bg-gray-800/50 transition-colors duration-300"
+            className="px-2 py-1 text-gray-300 rounded-sm bg-gray-800/50 transition-colors duration-300 text-sm"
           >
             {tech.toLowerCase()}
           </span>
@@ -131,7 +131,7 @@ export function ProjectCard({
           }`}
         >
           {renderImage()}
-          <p className="text-gray-400 text-sm mb-6 transition-colors duration-300">
+          <p className="text-gray-400 text-base mb-6 transition-colors duration-300">
             {description}
           </p>
           {renderTechnologies()}
@@ -145,7 +145,7 @@ export function ProjectCard({
           {renderImage()}
           <div className="space-y-6">
             <div>
-              <ul className="list-disc list-inside text-sm space-y-1 text-gray-400 transition-colors duration-300">
+              <ul className="list-disc list-inside text-base space-y-1 text-gray-400 transition-colors duration-300">
                 {achievements.map((achievement, index) => (
                   <li key={index}>{achievement}</li>
                 ))}

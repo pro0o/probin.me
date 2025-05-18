@@ -38,7 +38,7 @@ export default function MusicPage() {
           </span>
         </h1>
 
-        <p className="leading-relaxed text-zinc-300 text-sm mb-4">
+        <p className="leading-relaxed text-zinc-300 text-base mb-4">
           the large portion of my time awake is spent listening to music. in fact, i&apos;m most most most probably listening to some
           music right now!
           <br />
@@ -46,7 +46,7 @@ export default function MusicPage() {
           here are few albums i listen much, in no particular order:
         </p>
 
-        <ul className="mt-6 space-y-3 text-xs" aria-label="Favorite albums">
+        <ul className="mt-6 space-y-3 text-sm" aria-label="Favorite albums">
           {albumList}
         </ul>
       </section>
