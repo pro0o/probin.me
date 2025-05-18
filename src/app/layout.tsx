@@ -4,6 +4,7 @@ import "./globals.css"
 import { Navbar } from "../components/navbar"
 import Oneko from "@/components/oneko"
 import TransitionWrapper from "@/utils/transition-wrapper"
+import { ErrorBoundary } from "@/components/error-boundary"
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.probin.me"),
@@ -51,7 +52,9 @@ export default function RootLayout({
         <div className="max-w-4xl mx-auto px-4 py-8">
           <Navbar />
           <Oneko initialVariant="classic" initialKuroNeko={false}/>
-          <TransitionWrapper>{children}</TransitionWrapper>
+          <ErrorBoundary>
+            <TransitionWrapper>{children}</TransitionWrapper>
+          </ErrorBoundary>
         </div>
       </body>
     </html>
