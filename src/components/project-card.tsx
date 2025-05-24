@@ -109,8 +109,9 @@ export function ProjectCard({
   return (
     <div 
       ref={cardRef}
-      className="block border-2 border-gray-800/50 p-5 rounded-sm transition-all duration-300 hover:border-accent/50 relative group"
+      className="block border-b-2 border-gray-800/50 p-5 rounded-sm transition-all duration-300 relative group"
     >
+
       <div className="relative">
         <div className="absolute top-4 right-4 flex space-x-2 z-10 bg-black/40 backdrop-blur-sm p-1 rounded shadow-md">
           {[0, 1].map((index) => (
